@@ -35,14 +35,18 @@ def getIPAddress(request: request) -> IPv4Address:
     try:
         return IPv4Address(request.headers.get("X-Real-IP"))
     except AddressValueError:
+        print("Invalid IP address: " + request.headers.get("X-Real-IP"))
         try:
             return IPv4Address(request.headers.get("X-Real-IP").split(", ")[0])
         except AddressValueError:
+            print("Failed second time to get IP address: " + request.headers.get("X-Real-IP"))
             try:
                 return IPv4Address(request.remote_addr)
             except AddressValueError:
+                print("Frick - no IP address found!")
                 return IPv4Address("0.0.0.0")
         except AttributeError:
+            print("Frick - no IP address found at first!")
             return IPv4Address("0.0.0.0")
 
 @app.route("/")
