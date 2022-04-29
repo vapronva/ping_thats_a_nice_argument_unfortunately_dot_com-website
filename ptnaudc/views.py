@@ -92,6 +92,7 @@ def generateValuesForJavaScriptAnimation(ipAddress: IPv4Address) -> dict[str, st
 def all_deez():
     response = make_response(render_template("ptnaudc-apia-hr-genscr.js", **generateValuesForJavaScriptAnimation(IPv4Address(getIPAddress(request)))))
     response.headers["Content-Type"] = "application/javascript; charset=utf-8"
+    response.headers["Cache-Control"] = "no-store, must-revalidate, max-age=10"
     return response
 
 @app.route("/hype/<path:path>")
