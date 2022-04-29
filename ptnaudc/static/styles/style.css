@@ -1,0 +1,172 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: #0E0E0E;
+	overflow-x: hidden;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.page-container {
+	overflow: hidden;
+}
+
+a {
+	transition: background .3s ease-in-out;
+	outline: none !important;
+}
+
+a:hover {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.pp-loader {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	z-index: 100000;
+	background: #000000 url("https://cdn.wesa.vapronva.pw/relanoic/ping-thats-a-nice-argument-unfortunately-com/1.0/gif/pageloader.gif") no-repeat center center;
+	animation-name: preloader-fade;
+	animation-delay: 2s;
+	animation-duration: 0.5s;
+	animation-fill-mode: both;
+}
+
+.pp-load-complete {
+	animation-delay: 0.1s;
+}
+
+@keyframes preloader-fade {
+	0% {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+@font-face {
+	font-family: 'Inter-ExtraLight';
+	src: url("https://cdn.wesa.vapronva.pw/fonts/inter/3.19/files/i-extralight.woff2");
+	src: url("https://cdn.wesa.vapronva.pw/fonts/inter/3.19/files/i-extralight.woff2") format('woff2'),
+		url("https://cdn.wesa.vapronva.pw/fonts/inter/3.19/files/i-extralight.woff") format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.mainfs {
+	width: 100%;
+	clear: both;
+	background: 50% 50% no-repeat;
+	padding: 0 20px;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	position: relative;
+	display: flex;
+}
+
+.mainfs .container {
+	padding-left: 0;
+	padding-right: 0;
+	position: relative;
+}
+
+.filling-screen {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.filling-screen>.container {
+	align-self: flex-middle;
+	flex-grow: 1;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.filling-screen>.container>.row {
+	flex-grow: 1;
+	align-self: center;
+	width: 100%;
+}
+
+
+.filling-screen .filling-bottom-page {
+	flex-grow: 0;
+}
+
+.filling-screen .filling-bottom-page {
+	align-self: flex-end;
+}
+
+.margin-zero {
+	margin: 0;
+}
+
+p,
+a {
+	font-family: "Inter-ExtraLight";
+	color: #FFFFFF !important;
+}
+
+.container {
+	max-width: 1280px;
+}
+
+.par-info-subtitile-style {
+	font-family: "Inter-ExtraLight";
+	font-size: 9px;
+}
+
+.whitie-whitie-deez-nuts {
+	color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.color-style-white-link {
+	color: rgba(255, 255, 255, 0.20) !important;
+}
+
+.color-style-white-link:hover {
+	color: #cccbcb !important;
+}
+
+@media (max-width: 991px) {
+	.container {
+		width: 100%;
+	}
+	.mainfs {
+		padding-left: constant(safe-area-inset-left);
+		padding-right: constant(safe-area-inset-right);
+	}
+}
+
+@media (max-width: 991px) {
+	.par-info-subtitile-style {
+		font-size: 8px;
+	}
+}
+
+/* @media (max-width: 767px) {
+	p,
+	a {
+		color: #FFFFFF !important;
+	}
+} */
+
+@media (max-width: 575px) {
+	.container {
+		max-width: 800px;
+	}
+	.par-info-subtitile-style {
+		font-size: 6px;
+	}
+}

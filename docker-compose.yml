@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  web:
+    image: registry.vapronva.pw/websites/ping_thats_a_nice_argument_unfortunately_com-website:latest
+    restart: unless-stopped
+    container_name: "web-ping_thats_a_nice_argument_unfortunately_com"
+    networks:
+      - "w-ptnaudc-network"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.web-w_ptnaudc.rule=Host(`ping.thats-a-nice-argument-unfortunately.com`)"
+      - "traefik.http.routers.web-w_ptnaudc.entrypoints=http"
+      - "traefik.http.routers.web-w_ptnaudc.service=web-w_ptnaudc"
+      - "traefik.http.services.web-w_ptnaudc.loadbalancer.server.port=8000"
+
+networks:
+  w-ptnaudc-network:
+    external: true
