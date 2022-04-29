@@ -33,10 +33,10 @@ def error_500(e):
 
 def getIPAddress(request: request) -> IPv4Address:
     try:
-        return IPv4Address(request.headers.get("X-Forwarded-For"))
+        return IPv4Address(request.headers.get("X-Forwarded-Host"))
     except AddressValueError:
         try:
-            return IPv4Address(request.headers.get("X-Forwarded-For").split(", ")[0])
+            return IPv4Address(request.headers.get("X-Forwarded-Host").split(", ")[0])
         except AddressValueError:
             try:
                 return IPv4Address(request.remote_addr)
