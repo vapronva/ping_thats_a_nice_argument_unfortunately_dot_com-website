@@ -33,13 +33,13 @@ def error_500(e):
 
 def getIPAddress(request: request) -> IPv4Address:
     try:
-        return IPv4Address(request.headers.get("X-Real-IP"))
+        return IPv4Address(request.headers.get("x-vprw-internal-hostip"))
     except AddressValueError:
-        print("Invalid IP address: " + request.headers.get("X-Real-IP"))
+        print("Invalid IP address: " + request.headers.get("x-vprw-internal-hostip"))
         try:
-            return IPv4Address(request.headers.get("X-Real-IP").split(", ")[0])
+            return IPv4Address(request.headers.get("x-vprw-internal-hostip").split(", ")[0])
         except AddressValueError:
-            print("Failed second time to get IP address: " + request.headers.get("X-Real-IP"))
+            print("Failed second time to get IP address: " + request.headers.get("x-vprw-internal-hostip"))
             try:
                 return IPv4Address(request.remote_addr)
             except AddressValueError:
