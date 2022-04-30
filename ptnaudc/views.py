@@ -1,7 +1,8 @@
 from ipaddress import IPv4Address, AddressValueError
 import random
 from flask import jsonify, render_template, request, send_from_directory, make_response
-from ptnaudc import app
+from ptnaudc import app, cll
+import datetime
 
 @app.errorhandler(404)
 def error_404(e):
@@ -35,22 +36,23 @@ def getIPAddress(request: request) -> IPv4Address:
     try:
         return IPv4Address(request.headers.get("x-vprw-internal-hostip"))
     except AddressValueError:
-        print("Invalid IP address: " + request.headers.get("x-vprw-internal-hostip"))
         try:
             return IPv4Address(request.headers.get("x-vprw-internal-hostip").split(", ")[0])
         except AddressValueError:
-            print("Failed second time to get IP address: " + request.headers.get("x-vprw-internal-hostip"))
             try:
                 return IPv4Address(request.remote_addr)
             except AddressValueError:
-                print("Frick - no IP address found!")
                 return IPv4Address("0.0.0.0")
         except AttributeError:
-            print("Frick - no IP address found at first!")
             return IPv4Address("0.0.0.0")
 
 @app.route("/")
 def main_root():
+    try:
+        ipAddress = getIPAddress(request)
+        cll.insert_one({"ip": str(ipAddress), "timestamp": datetime.datetime.utcnow(), "userAgent": request.headers.get("User-Agent")})
+    except Exception as e:
+        print(e)
     return render_template("index.html", userIPAddress=getIPAddress(request))
 
 def generateValuesForJavaScriptAnimation(ipAddress: IPv4Address) -> dict[str, str]:
