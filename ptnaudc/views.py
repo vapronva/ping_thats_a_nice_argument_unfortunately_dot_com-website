@@ -48,12 +48,14 @@ def getIPAddress(request: request) -> IPv4Address:
 
 @app.route("/")
 def main_root():
+    ipAddress = getIPAddress(request)
     try:
-        ipAddress = getIPAddress(request)
         cll.insert_one({"ip": str(ipAddress), "timestamp": datetime.datetime.utcnow(), "userAgent": request.headers.get("User-Agent")})
     except Exception as e:
         print(e)
-    return render_template("index.html", userIPAddress=getIPAddress(request))
+    response = make_response(render_template("index.html", userIPAddress=ipAddress))
+    response.headers["Cache-Control"] = "no-store, must-revalidate, max-age=0"
+    return response
 
 def generateValuesForJavaScriptAnimation(ipAddress: IPv4Address) -> dict[str, str]:
     _ics = ["" if value == " " else value for value in str(ipAddress).center(15, " ")]
