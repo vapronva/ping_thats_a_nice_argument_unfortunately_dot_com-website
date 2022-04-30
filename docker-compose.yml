@@ -5,6 +5,8 @@ services:
     image: registry.vapronva.pw/websites/ping_thats_a_nice_argument_unfortunately_com-website:latest
     restart: unless-stopped
     container_name: "web-ping_thats_a_nice_argument_unfortunately_com"
+    environment:
+      - MONGODB_URI=${MONGODB_URI}
     networks:
       - "w-ptnaudc-network"
     labels:
