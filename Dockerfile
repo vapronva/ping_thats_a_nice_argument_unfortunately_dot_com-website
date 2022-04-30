@@ -4,6 +4,6 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN pip3 install Flask==2.1.0 gunicorn==20.1.0
+RUN pip3 install Flask==2.1.0 gunicorn==20.1.0 pymongo==4.1.0
 
 CMD ["sh", "run.sh"]
