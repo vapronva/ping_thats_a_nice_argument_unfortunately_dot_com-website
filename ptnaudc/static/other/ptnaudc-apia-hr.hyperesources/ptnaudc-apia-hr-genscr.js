@@ -73,7 +73,7 @@
 					t: "audio/mpeg"
 				}
 			},
-			l, ["", "<link href='https://cdn.wesa.vapronva.pw/fonts/inter/3.19/gfnt/inter-900.css' rel='stylesheet' type='text/css'>", "<link href='https://cdn.wesa.vapronva.pw/fonts/inter/3.19/gfnt/inter-300.css' rel='stylesheet' type='text/css'>", "<link href='https://cdn.wesa.vapronva.pw/fonts/inter/3.19/gfnt/inter-200.css' rel='stylesheet' type='text/css'>"], e, [{
+			l, ["", "<link href='https://static.wesa.vapronva.pw/fonts/inter/3.19/gfnt/inter-900.css' rel='stylesheet' type='text/css'>", "<link href='https://static.wesa.vapronva.pw/fonts/inter/3.19/gfnt/inter-300.css' rel='stylesheet' type='text/css'>", "<link href='https://static.wesa.vapronva.pw/fonts/inter/3.19/gfnt/inter-200.css' rel='stylesheet' type='text/css'>"], e, [{
 				n: "Press Button",
 				o: "112",
 				X: [0]

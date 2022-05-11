@@ -27,7 +27,7 @@ a:hover {
 	bottom: 0;
 	width: 100%;
 	z-index: 100000;
-	background: #000000 url("https://cdn.wesa.vapronva.pw/relanoic/ping-thats-a-nice-argument-unfortunately-com/1.0/gif/pageloader.gif") no-repeat center center;
+	background: #000000 url("https://static.wesa.vapronva.pw/relanoic/ping-thats-a-nice-argument-unfortunately-com/1.0/gif/pageloader.gif") no-repeat center center;
 	animation-name: preloader-fade;
 	animation-delay: 2s;
 	animation-duration: 0.5s;
@@ -52,9 +52,9 @@ a:hover {
 
 @font-face {
 	font-family: 'Inter-ExtraLight';
-	src: url("https://cdn.wesa.vapronva.pw/fonts/inter/3.19/files/i-extralight.woff2");
-	src: url("https://cdn.wesa.vapronva.pw/fonts/inter/3.19/files/i-extralight.woff2") format('woff2'),
-		url("https://cdn.wesa.vapronva.pw/fonts/inter/3.19/files/i-extralight.woff") format('woff');
+	src: url("https://static.wesa.vapronva.pw/fonts/inter/3.19/files/i-extralight.woff2");
+	src: url("https://static.wesa.vapronva.pw/fonts/inter/3.19/files/i-extralight.woff2") format('woff2'),
+		url("https://static.wesa.vapronva.pw/fonts/inter/3.19/files/i-extralight.woff") format('woff');
 	font-weight: normal;
 	font-style: normal;
 }
