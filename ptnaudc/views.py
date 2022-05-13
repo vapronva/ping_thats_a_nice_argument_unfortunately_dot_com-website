@@ -32,26 +32,26 @@ def error_500(e):
         500,
     )
 
-def getIPAddress(request: request) -> IPv4Address:
+def getIPAddress(incomingRequest: request) -> IPv4Address:
     try:
-        return IPv4Address(request.headers.get("x-vprw-internal-hostip"))
+        return IPv4Address(incomingRequest.headers.get("x-vprw-internal-hostip"))
     except AddressValueError:
         try:
-            return IPv4Address(request.headers.get("x-vprw-internal-hostip").split(", ")[0])
+            return IPv4Address(incomingRequest.headers.get("x-vprw-internal-hostip").split(", ")[0])
         except AddressValueError:
             try:
-                return IPv4Address(request.remote_addr)
+                return IPv4Address(incomingRequest.remote_addr)
             except AddressValueError:
-                return IPv4Address("0.0.0.0")
+                return IPv4Address("0.0.0.0") # skipcq: BAN-B104
         except AttributeError:
-            return IPv4Address("0.0.0.0")
+            return IPv4Address("0.0.0.0") # skipcq: BAN-B104
 
 @app.route("/")
 def main_root():
     ipAddress = getIPAddress(request)
     try:
         cll.insert_one({"ip": str(ipAddress), "timestamp": datetime.datetime.utcnow(), "userAgent": request.headers.get("User-Agent")})
-    except Exception as e:
+    except Exception as e: # skipcq: PYL-W0703
         print(e)
     response = make_response(render_template("index.html", userIPAddress=ipAddress))
     response.headers["Cache-Control"] = "no-store, must-revalidate, max-age=0"
