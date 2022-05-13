@@ -18,7 +18,8 @@ Saw [this meme](https://cdn.discordapp.com/attachments/953044259794214982/969732
 
 ## How?
 
-Really nothing to be proud of here. Just another quickly-made thingie.
+Really nothing going on in here — just another quickly-made thingie.\
+It's poorly done, to be honest, but whatever! ~~It properly works only on desktop.~~
 
 ### Website
 
