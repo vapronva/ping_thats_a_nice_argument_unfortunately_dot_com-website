@@ -1,7 +1,7 @@
 stages:
-  - test
-  - build
-  - deploy
+- test
+- build
+- deploy
 
 sast:
   stage: test
@@ -12,25 +12,38 @@ include:
 docker-build:
   stage: build
   services:
-    - docker:dind
+  - docker:dind
   before_script:
-    - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD" $REGISTRY
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD" $REGISTRY
   script:
-    - docker build --pull -t "$REGISTRY/websites/ping_thats_a_nice_argument_unfortunately_com-website" .
-    - docker push "$REGISTRY/websites/ping_thats_a_nice_argument_unfortunately_com-website"
+  - docker build --pull -t "$REGISTRY/websites/ping_thats_a_nice_argument_unfortunately_com-website"
+    .
+  - docker push "$REGISTRY/websites/ping_thats_a_nice_argument_unfortunately_com-website"
   rules:
-    - if: $CI_COMMIT_BRANCH
-      exists:
-        - Dockerfile
+  - if: $CI_COMMIT_BRANCH == "main"
+    exists:
+    - Dockerfile
+    changes:
+    - ptnaudc/**/*
+    - ptnaudc/*
+    - Dockerfile
+    - docker-compose.yml
+    - .gitlab-ci.yml
 
 deploy-job:
   stage: deploy
   before_script:
-    - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD" $REGISTRY
+  - docker login -u "$REGISTRY_USER" -p "$REGISTRY_PASSWORD" $REGISTRY
   script:
-    - docker-compose -f 'docker-compose.yml' --project-name 'w-ptnaudc' down
-    - docker-compose -f 'docker-compose.yml' --project-name 'w-ptnaudc' up -d
+  - docker-compose -f 'docker-compose.yml' --project-name 'w-ptnaudc' down
+  - docker-compose -f 'docker-compose.yml' --project-name 'w-ptnaudc' up -d
   rules:
-    - if: $CI_COMMIT_BRANCH
-      exists:
-        - docker-compose.yml
+  - if: $CI_COMMIT_BRANCH == "main"
+    exists:
+    - docker-compose.yml
+    changes:
+    - ptnaudc/**/*
+    - ptnaudc/*
+    - Dockerfile
+    - docker-compose.yml
+    - .gitlab-ci.yml
