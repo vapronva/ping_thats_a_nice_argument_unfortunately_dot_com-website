@@ -34,10 +34,10 @@ def error_500(e):
 
 def getIPAddress(incomingRequest: request) -> IPv4Address:
     try:
-        return IPv4Address(incomingRequest.headers.get("x-vprw-internal-hostip"))
+        return IPv4Address(incomingRequest.headers.get("X-Forwarded-For"))
     except AddressValueError:
         try:
-            return IPv4Address(incomingRequest.headers.get("x-vprw-internal-hostip").split(", ")[0])
+            return IPv4Address(incomingRequest.headers.get("x-vprw-internal-hostip"))
         except AddressValueError:
             try:
                 return IPv4Address(incomingRequest.remote_addr)

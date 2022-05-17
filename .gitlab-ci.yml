@@ -28,7 +28,6 @@ docker-build:
     - ptnaudc/*
     - Dockerfile
     - docker-compose.yml
-    - .gitlab-ci.yml
 
 deploy-job:
   stage: deploy
