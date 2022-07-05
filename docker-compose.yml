@@ -10,8 +10,8 @@ services:
       - VIRTUAL_HOST=ping.thats-a-nice-argument-unfortunately.com
       - VIRTUAL_PORT=8000
     networks:
-      - "w-ptnaudc-network"
+      - "wa-thatsaniceargumentunfortunately-network"
 
 networks:
-  w-ptnaudc-network:
+  wa-thatsaniceargumentunfortunately-network:
     external: true
